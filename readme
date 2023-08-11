@@ -1,0 +1,176 @@
+# For MetaTrader 5 (MT5) Indicator:
+
+## Step 1: Copy the MetatraderValidation.ex5 file
+
+Open your download folder and copy the MetatraderValidation.ex5 file.
+
+![Alt Text](Screenshot(34).png)
+
+## Step 2: Open MT5 Application
+
+Open the MetaTrader 5 (MT5) application.
+
+![Alt Text](Screenshot(35).png)
+
+
+## Step 3: Open Data Folder
+
+Go to "File" in the top menu and click "Open Data Folder."
+
+![Alt Text](Screenshot(49).png)
+
+## Step 4: Navigate to MQL5 Folder
+
+In the Data Folder, click on the "MQL5" folder.
+
+![Alt Text](Screenshot(36).png)
+
+
+## Step 5: Open Libraries Folder
+
+Within the MQL5 folder, locate and open the "Libraries" folder.
+
+![Alt Text](Screenshot(37).png)
+
+## Step 6: Paste MetatraderValidation.ex5
+
+Paste the MetatraderValidation.ex5 file you copied earlier into the "Libraries" folder.
+
+![Alt Text](Screenshot(38).png)
+
+## Step 7: Navigate to Experts Folder
+
+Go back to the "MQL5" folder and click on the "Indicators" folder.
+
+![Alt Text](Screenshot(40).png)
+
+
+## Step 8: Open the Indicators
+
+Locate and open the Indicator you want to license using the MetaEditor.
+
+![Alt Text](Screenshot(41).png)
+
+
+## Step 9: Add License Code (Above OnInit)
+
+Place the following code above the OnInit() function of your Indicator:
+
+```echo
+#import "MetatraderValidation.ex5"
+bool Validate(string,string);
+void updateConnectionStatus(string);
+void updateHardwareId(string);
+void updateConnectionStatusConnected(string);
+void updateConnectionStatusDisconnected(string);
+#import
+bool auth = false;   
+
+input string strMA1="---------------------------------------- License Input ----------------------------------------";//<<<<<<<< License Input >>>>>>>>
+
+input string serialkey = ""; //Serial Keys
+string ProductCode = "";//Product Code
+```
+
+![Alt Text](Screenshot(42).png)
+
+## Step 10: Add License Code (OnInit)
+
+Place the following code inside the OnInit() function of your Indicator:
+
+```echo
+if(!TERMINAL_DLLS_ALLOWED)
+     {
+      Alert("Please Allow DLL Imports!");
+      ExpertRemove();
+     }
+   if(MQLInfoInteger(MQL_OPTIMIZATION) == 0)
+     {
+      updateHardwareId(serialkey);
+      auth = Validate(serialkey,ProductCode);
+      if(auth == true)
+        {
+         Comment("Active");
+         updateConnectionStatusConnected(serialkey);
+
+         // last_check_expiry = iTime(Symbol(),check_expiry_timeframe,0);
+         // EventSetTimer(60);
+        }
+      if(auth == false)
+        {
+         Comment("Inactive. Contact Provider to Activate");
+         ExpertRemove();
+        }
+     }
+```
+![Alt Text](Screenshot(43).png)
+
+
+## Step 11: Add License Code (OnDeinit)
+
+Add the following code at the end  of your Indicator:
+
+```echo
+void OnDeinit(const int reason)
+  {
+   if(MQLInfoInteger(MQL_OPTIMIZATION) == 0)
+     {
+      updateConnectionStatusDisconnected(serialkey);
+     }
+
+  }
+```
+
+![Alt Text](Screenshot(44).png)
+
+## Step 12: Add License Code (OnCalculate)
+
+Place the following code inside the OnCalculate() function of your Indicator:
+
+```echo
+  if(MQLInfoInteger(MQL_OPTIMIZATION) == 0)
+     {
+      auth = Validate(serialkey,ProductCode);
+      if(auth == true)
+        {
+         Comment("Active");
+         // last_check_expiry = iTime(Symbol(),check_expiry_timeframe,0);
+         // EventSetTimer(60);
+        }
+      if(auth == false)
+        {
+         Comment("Inactive. Contact Provider to Activate");
+         //ExpertRemove();
+         return ;
+        }
+     }
+```
+
+![Alt Text](Screenshot(45).png)
+
+
+## Step 13: Replace the Product Code
+
+Replace the string "" with the your generated Product Code, the Indicator will use this Product Code to validate the license key provided by the client using the MetaTraderValidation library.
+
+![Alt Text](Screenshot(48).png)
+
+
+![Alt Text](Screenshot(13).png)
+
+
+## Step 14: Compile and Provide to Client
+
+Compile the Indicator and provide the resulting .ex5 file to your client.
+
+## Step 15: Instruct the Client
+
+Instruct your client to enter the Serial Key in the "serialkey" input field of the Indicator when place the Indicator on the chart.
+
+![Alt Text](Screenshot(46).png)
+
+## Step 16: Validation
+
+The Indicator will validate the Serial Key with the MetaTraderValidation library and allow the client to use the Indicator if the validation is successful.
+
+![Alt Text](Screenshot(47).png)
