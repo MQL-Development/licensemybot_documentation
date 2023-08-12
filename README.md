@@ -17,52 +17,52 @@ The above steps describe how to implement licensing code in an Expert Advisor/In
 
 Open your download folder and copy the MetatraderValidation.ex4 file.
 
-![Alt Text](Screenshot.png)
+![Alt Text](Pic/Screenshot.png)
 
 ## Step 2: Open MT4 Application
 
 Open the MetaTrader 4 (MT4) application.
 
-![Alt Text](Screenshot(1).png)
+![Alt Text](Pic/Screenshot(1).png)
 
 
 ## Step 3: Open Data Folder
 
 Go to "File" in the top menu and click "Open Data Folder."
 
-![Alt Text](Screenshot(2).png)
+![Alt Text](Pic/Screenshot(2).png)
 
 ## Step 4: Navigate to MQL4 Folder
 
 In the Data Folder, click on the "MQL4" folder.
 
-![Alt Text](Screenshot(3).png)
+![Alt Text](Pic/Screenshot(3).png)
 
 
 ## Step 5: Open Libraries Folder
 
 Within the MQL4 folder, locate and open the "Libraries" folder.
 
-![Alt Text](Screenshot(4).png)
+![Alt Text](Pic/Screenshot(4).png)
 
 ## Step 6: Paste MetatraderValidation.ex4
 
 Paste the MetatraderValidation.ex4 file you copied earlier into the "Libraries" folder.
 
-![Alt Text](Screenshot(5).png)
+![Alt Text](Pic/Screenshot(5).png)
 
 ## Step 7: Navigate to Experts Folder
 
 Go back to the "MQL4" folder and click on the "Experts" folder.
 
-![Alt Text](Screenshot(6).png)
+![Alt Text](Pic/Screenshot(6).png)
 
 
 ## Step 8: Open the Expert Advisor (EA)
 
 Locate and open the Expert Advisor (EA) you want to license using the MetaEditor.
 
-![Alt Text](Screenshot(24).png)
+![Alt Text](Pic/Screenshot(24).png)
 
 
 ## Step 9: Add License Code (Above OnInit)
@@ -86,7 +86,7 @@ input string serialkey = ""; //Serial Keys
 string ProductCode="MACD Demo EA";//Product Code
 ```
 
-![Alt Text](Screenshot(7).png)
+![Alt Text](Pic/Screenshot(7).png)
 
 ## Step 10: Add License Code (OnInit)
 
@@ -117,7 +117,7 @@ if(IsDllsAllowed()==false)
         }
      }
 ```
-![Alt Text](Screenshot(8).png)
+![Alt Text](Pic/Screenshot(8).png)
 
 
 ## Step 11: Add License Code (OnDeinit)
@@ -131,7 +131,7 @@ Place the following code inside the OnDeinit() function of your Expert Advisor:
      }
 ```
 
-![Alt Text](Screenshot(9).png)
+![Alt Text](Pic/Screenshot(9).png)
 
 ## Step 12: Add License Code (OnTick)
 
@@ -156,17 +156,17 @@ Place the following code inside the OnTick() function of your Expert Advisor:
      }
 ```
 
-![Alt Text](Screenshot(23).png)
+![Alt Text](Pic/Screenshot(23).png)
 
 
 ## Step 13: Replace the Product Code
 
 Replace the string "MACD Demo EA" with the your generated Product Code, the Expert Advisor will use this Product Code to validate the license key provided by the client using the MetaTraderValidation library.
 
-![Alt Text](Screenshot(12).png)
+![Alt Text](Pic/Screenshot(12).png)
 
 
-![Alt Text](Screenshot(13).png)
+![Alt Text](Pic/Screenshot(13).png)
 
 
 ## Step 14: Compile and Provide to Client
@@ -177,13 +177,13 @@ Compile the Expert Advisor and provide the resulting .ex4 file to your client.
 
 Instruct your client to enter the Serial Key in the "serialkey" input field of the Expert Advisor when place the Expert Advisor on the chart.
 
-![Alt Text](Screenshot(10).png)
+![Alt Text](Pic/Screenshot(10).png)
 
 ## Step 16: Validation
 
 The Expert Advisor will validate the Serial Key with the MetaTraderValidation library and allow the client to use the Expert Advisor if the validation is successful.
 
-![Alt Text](Screenshot(11).png)
+![Alt Text](Pic/Screenshot(11).png)
 
 # For MetaTrader 4 (MT4) Indicator:
 
@@ -191,52 +191,52 @@ The Expert Advisor will validate the Serial Key with the MetaTraderValidation li
 
 Open your download folder and copy the MetatraderValidation.ex4 file.
 
-![Alt Text](Screenshot.png)
+![Alt Text](Pic/Screenshot.png)
 
 ## Step 2: Open MT4 Application
 
 Open the MetaTrader 4 (MT4) application.
 
-![Alt Text](Screenshot(1).png)
+![Alt Text](Pic/Screenshot(1).png)
 
 
 ## Step 3: Open Data Folder
 
 Go to "File" in the top menu and click "Open Data Folder."
 
-![Alt Text](Screenshot(2).png)
+![Alt Text](Pic/Screenshot(2).png)
 
 ## Step 4: Navigate to MQL4 Folder
 
 In the Data Folder, click on the "MQL4" folder.
 
-![Alt Text](Screenshot(3).png)
+![Alt Text](Pic/Screenshot(3).png)
 
 
 ## Step 5: Open Libraries Folder
 
 Within the MQL4 folder, locate and open the "Libraries" folder.
 
-![Alt Text](Screenshot(4).png)
+![Alt Text](Pic/Screenshot(4).png)
 
 ## Step 6: Paste MetatraderValidation.ex4
 
 Paste the MetatraderValidation.ex4 file you copied earlier into the "Libraries" folder.
 
-![Alt Text](Screenshot(5).png)
+![Alt Text](Pic/Screenshot(5).png)
 
 ## Step 7: Navigate to Experts Folder
 
 Go back to the "MQL4" folder and click on the "Indicators" folder.
 
-![Alt Text](Screenshot(25).png)
+![Alt Text](Pic/Screenshot(25).png)
 
 
 ## Step 8: Open the Indicators
 
 Locate and open the Indicator you want to license using the MetaEditor.
 
-![Alt Text](Screenshot(26).png)
+![Alt Text](Pic/Screenshot(26).png)
 
 
 ## Step 9: Add License Code (Above OnInit)
@@ -260,7 +260,7 @@ input string serialkey = ""; //Serial Keys
 string ProductCode="MACD Demo EA";//Product Code
 ```
 
-![Alt Text](Screenshot(27).png)
+![Alt Text](Pic/Screenshot(27).png)
 
 ## Step 10: Add License Code (OnInit)
 
@@ -291,7 +291,7 @@ if(IsDllsAllowed()==false)
         }
      }
 ```
-![Alt Text](Screenshot(28).png)
+![Alt Text](Pic/Screenshot(28).png)
 
 
 ## Step 11: Add License Code (OnDeinit)
@@ -308,7 +308,7 @@ if(MQLInfoInteger(MQL_OPTIMIZATION) == 0)
   }
 ```
 
-![Alt Text](Screenshot(30).png)
+![Alt Text](Pic/Screenshot(30).png)
 
 ## Step 12: Add License Code (OnCalculate)
 
@@ -333,17 +333,17 @@ Place the following code inside the OnCalculate() function of your Indicator:
      }
 ```
 
-![Alt Text](Screenshot(60).png)
+![Alt Text](Pic/Screenshot(60).png)
 
 
 ## Step 13: Replace the Product Code
 
 Replace the string "MACD Demo EA" with the your generated Product Code, the Indicator will use this Product Code to validate the license key provided by the client using the MetaTraderValidation library.
 
-![Alt Text](Screenshot(12).png)
+![Alt Text](Pic/Screenshot(12).png)
 
 
-![Alt Text](Screenshot(13).png)
+![Alt Text](Pic/Screenshot(13).png)
 
 
 ## Step 14: Compile and Provide to Client
@@ -354,13 +354,13 @@ Compile the Indicator and provide the resulting .ex4 file to your client.
 
 Instruct your client to enter the Serial Key in the "serialkey" input field of the Indicator when place the Indicator on the chart.
 
-![Alt Text](Screenshot(31).png)
+![Alt Text](Pic/Screenshot(31).png)
 
 ## Step 16: Validation
 
 The Indicator will validate the Serial Key with the MetaTraderValidation library and allow the client to use the Indicator if the validation is successful.
 
-![Alt Text](Screenshot(32).png)
+![Alt Text](Pic/Screenshot(32).png)
 
 
 # For MetaTrader 5  (MT5) Expert Advisor:
@@ -369,52 +369,52 @@ The Indicator will validate the Serial Key with the MetaTraderValidation library
 
 Open your download folder and copy the MetatraderValidation.ex5 file.
 
-![Alt Text](Screenshot(34).png)
+![Alt Text](Pic/Screenshot(34).png)
 
 ## Step 2: Open MT5 Application
 
 Open the MetaTrader 5 (MT5) application.
 
-![Alt Text](Screenshot(35).png)
+![Alt Text](Pic/Screenshot(35).png)
 
 
 ## Step 3: Open Data Folder
 
 Go to "File" in the top menu and click "Open Data Folder."
 
-![Alt Text](Screenshot(49).png)
+![Alt Text](Pic/Screenshot(49).png)
 
 ## Step 4: Navigate to MQL5 Folder
 
 In the Data Folder, click on the "MQL5" folder.
 
-![Alt Text](Screenshot(36).png)
+![Alt Text](Pic/Screenshot(36).png)
 
 
 ## Step 5: Open Libraries Folder
 
 Within the MQL5 folder, locate and open the "Libraries" folder.
 
-![Alt Text](Screenshot(37).png)
+![Alt Text](Pic/Screenshot(37).png)
 
 ## Step 6: Paste MetatraderValidation.ex5
 
 Paste the MetatraderValidation.ex5 file you copied earlier into the "Libraries" folder.
 
-![Alt Text](Screenshot(38).png)
+![Alt Text](Pic/Screenshot(38).png)
 
 ## Step 7: Navigate to Experts Folder
 
 Go back to the "MQL5" folder and click on the "Experts" folder.
 
-![Alt Text](Screenshot(40).png)
+![Alt Text](Pic/Screenshot(40).png)
 
 
 ## Step 8: Open the Expert Advisor (EA)
 
 Locate and open the Expert Advisor (EA) you want to license using the MetaEditor.
 
-![Alt Text](Screenshot(41).png)
+![Alt Text](Pic/Screenshot(41).png)
 
 
 ## Step 9: Add License Code (Above OnInit)
@@ -437,7 +437,7 @@ input string serialkey = ""; //Serial Keys
 string ProductCode = "";//Product Code
 ```
 
-![Alt Text](Screenshot(42).png)
+![Alt Text](Pic/Screenshot(42).png)
 
 ## Step 10: Add License Code (OnInit)
 
@@ -468,7 +468,7 @@ if(!TERMINAL_DLLS_ALLOWED)
         }
      }
 ```
-![Alt Text](Screenshot(43).png)
+![Alt Text](Pic/Screenshot(43).png)
 
 
 ## Step 11: Add License Code (OnDeinit)
@@ -482,7 +482,7 @@ Place the following code inside the OnDeinit() function of your Expert Advisor:
      }
 ```
 
-![Alt Text](Screenshot(44).png)
+![Alt Text](Pic/Screenshot(44).png)
 
 ## Step 12: Add License Code (OnTick)
 
@@ -507,7 +507,7 @@ Place the following code inside the OnTick() function of your Expert Advisor:
      }
 ```
 
-![Alt Text](Screenshot(45).png)
+![Alt Text](Pic/Screenshot(45).png)
 
 
 ## Step 13: Replace the Product Code
@@ -515,9 +515,9 @@ Place the following code inside the OnTick() function of your Expert Advisor:
 Replace the string "" with the your generated Product Code, the Expert Advisor will use this Product Code to validate the license key provided by the client using the MetaTraderValidation library.
 
 
-![Alt Text](Screenshot(48).png)
+![Alt Text](Pic/Screenshot(48).png)
 
-![Alt Text](Screenshot(13).png)
+![Alt Text](Pic/Screenshot(13).png)
 
 
 ## Step 14: Compile and Provide to Client
@@ -528,13 +528,13 @@ Compile the Expert Advisor and provide the resulting .ex5 file to your client.
 
 Instruct your client to enter the Serial Key in the "serialkey" input field of the Expert Advisor when place the Expert Advisor on the chart.
 
-![Alt Text](Screenshot(46).png)
+![Alt Text](Pic/Screenshot(46).png)
 
 ## Step 16: Validation
 
 The Expert Advisor will validate the Serial Key with the MetaTraderValidation library and allow the client to use the Expert Advisor if the validation is successful.
 
-![Alt Text](Screenshot(47).png)
+![Alt Text](Pic/Screenshot(47).png)
 
 # For MetaTrader 5 (MT5) Indicator:
 
@@ -542,52 +542,52 @@ The Expert Advisor will validate the Serial Key with the MetaTraderValidation li
 
 Open your download folder and copy the MetatraderValidation.ex5 file.
 
-![Alt Text](Screenshot(34).png)
+![Alt Text](Pic/Screenshot(34).png)
 
 ## Step 2: Open MT5 Application
 
 Open the MetaTrader 5 (MT5) application.
 
-![Alt Text](Screenshot(35).png)
+![Alt Text](Pic/Screenshot(35).png)
 
 
 ## Step 3: Open Data Folder
 
 Go to "File" in the top menu and click "Open Data Folder."
 
-![Alt Text](Screenshot(49).png)
+![Alt Text](Pic/Screenshot(49).png)
 
 ## Step 4: Navigate to MQL5 Folder
 
 In the Data Folder, click on the "MQL5" folder.
 
-![Alt Text](Screenshot(36).png)
+![Alt Text](Pic/Screenshot(36).png)
 
 
 ## Step 5: Open Libraries Folder
 
 Within the MQL5 folder, locate and open the "Libraries" folder.
 
-![Alt Text](Screenshot(37).png)
+![Alt Text](Pic/Screenshot(37).png)
 
 ## Step 6: Paste MetatraderValidation.ex5
 
 Paste the MetatraderValidation.ex5 file you copied earlier into the "Libraries" folder.
 
-![Alt Text](Screenshot(38).png)
+![Alt Text](Pic/Screenshot(38).png)
 
 ## Step 7: Navigate to Experts Folder
 
 Go back to the "MQL5" folder and click on the "Indicators" folder.
 
-![Alt Text](Screenshot(50).png)
+![Alt Text](Pic/Screenshot(50).png)
 
 
 ## Step 8: Open the Indicators
 
 Locate and open the Indicator you want to license using the MetaEditor.
 
-![Alt Text](Screenshot(51).png)
+![Alt Text](Pic/Screenshot(51).png)
 
 
 ## Step 9: Add License Code (Above OnInit)
@@ -610,7 +610,7 @@ input string serialkey = ""; //Serial Keys
 string ProductCode = "";//Product Code
 ```
 
-![Alt Text](Screenshot(52).png)
+![Alt Text](Pic/Screenshot(52).png)
 
 ## Step 10: Add License Code (OnInit)
 
@@ -641,7 +641,7 @@ if(!TERMINAL_DLLS_ALLOWED)
         }
      }
 ```
-![Alt Text](Screenshot(53).png)
+![Alt Text](Pic/Screenshot(53).png)
 
 
 ## Step 11: Add License Code (OnDeinit)
@@ -659,7 +659,7 @@ void OnDeinit(const int reason)
   }
 ```
 
-![Alt Text](Screenshot(54).png)
+![Alt Text](Pic/Screenshot(54).png)
 
 ## Step 12: Add License Code (OnCalculate)
 
@@ -684,17 +684,17 @@ Place the following code inside the OnCalculate() function of your Indicator:
      }
 ```
 
-![Alt Text](Screenshot(55).png)
+![Alt Text](Pic/Screenshot(55).png)
 
 
 ## Step 13: Replace the Product Code
 
 Replace the string "" with the your generated Product Code, the Indicator will use this Product Code to validate the license key provided by the client using the MetaTraderValidation library.
 
-![Alt Text](Screenshot(56).png)
+![Alt Text](Pic/Screenshot(56).png)
 
 
-![Alt Text](Screenshot(13).png)
+![Alt Text](Pic/Screenshot(13).png)
 
 
 ## Step 14: Compile and Provide to Client
@@ -705,12 +705,12 @@ Compile the Indicator and provide the resulting .ex5 file to your client.
 
 Instruct your client to enter the Serial Key in the "serialkey" input field of the Indicator when place the Indicator on the chart.
 
-![Alt Text](Screenshot(57).png)
+![Alt Text](Pic/Screenshot(57).png)
 
 ## Step 16: Validation
 
 The Indicator will validate the Serial Key with the MetaTraderValidation library and allow the client to use the Indicator if the validation is successful.
 
-![Alt Text](Screenshot(58).png)
+![Alt Text](Pic/Screenshot(58).png)
 
 
