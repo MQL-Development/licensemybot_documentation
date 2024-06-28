@@ -9,6 +9,7 @@ The above steps describe how to implement licensing code in an Expert Advisor/In
 * For MetaTrader 4 (MT4) Indicator
 * For MetaTrader 5 (MT4) Expert Advisor
 * For MetaTrader 5 (MT4) Indicator
+* Special Instruction For MAC and Metatrader's VPS
 
 
 # For MetaTrader 4 (MT4) Expert Advisor:
@@ -96,7 +97,7 @@ Place the following code inside the OnInit() function of your Expert Advisor:
 if(IsDllsAllowed()==false) 
     { 
      Alert("DLL call is not allowed. Experts cannot run.");
-     ExpertRemove();
+     //ExpertRemove();
     } 
    if(MQLInfoInteger(MQL_OPTIMIZATION) == 0)
      {
@@ -270,7 +271,7 @@ Place the following code inside the OnInit() function of your Indicator:
 if(IsDllsAllowed()==false) 
     { 
      Alert("DLL call is not allowed. Experts cannot run.");
-     ExpertRemove();
+     //ExpertRemove();
     } 
    if(MQLInfoInteger(MQL_OPTIMIZATION) == 0)
      {
@@ -447,7 +448,7 @@ Place the following code inside the OnInit() function of your Expert Advisor:
 if(!TERMINAL_DLLS_ALLOWED)
      {
       Alert("Please Allow DLL Imports!");
-      ExpertRemove();
+      //ExpertRemove();
      }
    if(MQLInfoInteger(MQL_OPTIMIZATION) == 0)
      {
@@ -620,7 +621,7 @@ Place the following code inside the OnInit() function of your Indicator:
 if(!TERMINAL_DLLS_ALLOWED)
      {
       Alert("Please Allow DLL Imports!");
-      ExpertRemove();
+      //ExpertRemove();
      }
    if(MQLInfoInteger(MQL_OPTIMIZATION) == 0)
      {
@@ -713,4 +714,16 @@ The Indicator will validate the Serial Key with the MetaTraderValidation library
 
 ![Alt Text](Images/Screenshot(58).png)
 
+# Special Instruction for MAC and Metatrader's VPS:
 
+## Step 1: Open experts options.
+
+Go to tools and click for options.
+
+![Alt Text](Images/Screenshot(61).png)
+
+## Step 2: Add link in to the allowed list.
+
+Add this link and also allow the web request. http://api.licensemybot.com/.
+
+![Alt Text](Images/Screenshot(62).png)
