@@ -724,6 +724,6 @@ Go to tools and click for options.
 
 ## Step 2: Add link in to the allowed list.
 
-Add this link and also allow the web request. http://api.licensemybot.com/.
+Add this link and also allow the web request. https://api.licensemybot.com/.
 
 ![Alt Text](Images/Screenshot(62).png)
