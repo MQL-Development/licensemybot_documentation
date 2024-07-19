@@ -139,7 +139,7 @@ Place the following code inside the OnDeinit() function of your Expert Advisor:
 Place the following code inside the OnTick() function of your Expert Advisor:
 
 ```echo
- if(MQLInfoInteger(MQL_OPTIMIZATION) == 0)
+ if(MQLInfoInteger(MQL_OPTIMIZATION) == 0 && MQLInfoInteger(MQL_TESTER) == 0)
      {
       auth = Validate(serialkey,ProductCode);
       if(auth == true)
@@ -316,7 +316,7 @@ if(MQLInfoInteger(MQL_OPTIMIZATION) == 0)
 Place the following code inside the OnCalculate() function of your Indicator:
 
 ```echo
-  if(MQLInfoInteger(MQL_OPTIMIZATION) == 0)
+  if(MQLInfoInteger(MQL_OPTIMIZATION) == 0 && MQLInfoInteger(MQL_TESTER) == 0)
      {
       auth = Validate(serialkey,ProductCode);
       if(auth == true)
@@ -490,7 +490,7 @@ Place the following code inside the OnDeinit() function of your Expert Advisor:
 Place the following code inside the OnTick() function of your Expert Advisor:
 
 ```echo
- if(MQLInfoInteger(MQL_OPTIMIZATION) == 0)
+ if(MQLInfoInteger(MQL_OPTIMIZATION) == 0 && MQLInfoInteger(MQL_TESTER) == 0)
      {
       auth = Validate(serialkey,ProductCode);
       if(auth == true)
@@ -667,7 +667,7 @@ void OnDeinit(const int reason)
 Place the following code inside the OnCalculate() function of your Indicator:
 
 ```echo
-  if(MQLInfoInteger(MQL_OPTIMIZATION) == 0)
+  if(MQLInfoInteger(MQL_OPTIMIZATION) == 0 && MQLInfoInteger(MQL_TESTER) == 0)
      {
       auth = Validate(serialkey,ProductCode);
       if(auth == true)
