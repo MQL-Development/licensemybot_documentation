@@ -5,14 +5,14 @@
 The above steps describe how to implement a licensing code in an Expert Advisor/Indicator  for MetaTrader 4 (MT4) and MetaTrader 5 (MT5). First, a unique Product Code is generated as an identifier for the license. The Expert Advisor's code is then modified by replacing a string with the generated Product Code. The Expert Advisor is compiled, and the resulting .ex4 (or .ex5) file is provided to the client. The client is instructed to input the provided Serial Key when attaching the Expert Advisor to a chart. The Expert Advisor internally validates the license by comparing the Product Code and Serial Key using the MetaTraderValidation library. If validation is successful, the Expert Advisor functions normally; otherwise, it takes appropriate action based on the implementation. This process helps protect the Expert Advisor and ensures that only authorized clients can use it.
 
 ## Table of Content
-* [For MetaTrader 4 (MT4) Expert Advisor](#for-metatrader-4-(mt4)-expert-advisor:)
-* [For MetaTrader 4 (MT4) Indicator](#for-metatrader-4-(mt4)-indicator:)
-* [For MetaTrader 5 (MT4) Expert Advisor](#for-metatrader-5-(mt4)-expert-advisor:)
-* [For MetaTrader 5 (MT4) Indicator](#for-metatrader-5-(mt4)-indicator:)
-* [Special Instruction For MAC and Metatrader's VPS](#special-instruction-for-mac-and-metatraders-vps:)
+* [For MetaTrader 4 (MT4) Expert Advisor](#for-metatrader-4-(mt4)-expert-advisor)
+* [For MetaTrader 4 (MT4) Indicator](#for-metatrader-4-(mt4)-indicator)
+* [For MetaTrader 5 (MT4) Expert Advisor](#for-metatrader-5-(mt4)-expert-advisor)
+* [For MetaTrader 5 (MT4) Indicator](#for-metatrader-5-(mt4)-indicator)
+* [Special Instruction For MAC and Metatrader's VPS](#special-instruction-for-mac-and-metatraders-vps)
 
 
-# For MetaTrader 4 (MT4) Expert Advisor:
+# For MetaTrader 4 (MT4) Expert Advisor
 
 ## Step 1: Copy the MetatraderValidation.ex4 file
 
@@ -195,7 +195,7 @@ The Expert Advisor will validate the Serial Key with the MetaTraderValidation li
 
 ![Alt Text](Images/Screenshot(11).png)
 
-# For MetaTrader 4 (MT4) Indicator:
+# For MetaTrader 4 (MT4) Indicator
 
 ## Step 1: Copy the MetatraderValidation.ex4 file
 
@@ -387,7 +387,7 @@ The Indicator will validate the Serial Key with the MetaTraderValidation library
 ![Alt Text](Images/Screenshot(32).png)
 
 
-# For MetaTrader 5  (MT5) Expert Advisor:
+# For MetaTrader 5  (MT5) Expert Advisor
 
 ## Step 1: Copy the MetatraderValidation.ex5 file
 
@@ -572,7 +572,7 @@ The Expert Advisor will validate the Serial Key with the MetaTraderValidation li
 
 ![Alt Text](Images/Screenshot(47).png)
 
-# For MetaTrader 5 (MT5) Indicator:
+# For MetaTrader 5 (MT5) Indicator
 
 ## Step 1: Copy the MetatraderValidation.ex5 file
 
@@ -766,7 +766,7 @@ The Indicator will validate the Serial Key with the MetaTraderValidation library
 
 ![Alt Text](Images/Screenshot(58).png)
 
-# Special Instruction for MAC and Metatrader's VPS:
+# Special Instruction for MAC and Metatrader's VPS
 
 ## Step 1: Open Experts options.
 
