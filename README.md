@@ -2,14 +2,14 @@
 
 ## Description
 
-The above steps describe how to implement licensing code in an Expert Advisor/Indicator  for both MetaTrader 4 (MT4) and MetaTrader 5 (MT5). First, a unique Product Code is generated as an identifier for the license. The Expert Advisor's code is then modified by replacing an string with the generated Product Code. The Expert Advisor is compiled, and the resulting .ex4 (or .ex5) file is provided to the client. The client is instructed to input the provided Serial Key when attaching the Expert Advisor to a chart. The Expert Advisor internally validates the license by comparing the Product Code and Serial Key using the MetaTraderValidation library. If validation is successful, the Expert Advisor functions normally; otherwise, it takes appropriate action based on the implementation. This process helps protect the Expert Advisor and ensures that only authorized clients can use it.
+The above steps describe how to implement a licensing code in an Expert Advisor/Indicator  for MetaTrader 4 (MT4) and MetaTrader 5 (MT5). First, a unique Product Code is generated as an identifier for the license. The Expert Advisor's code is then modified by replacing a string with the generated Product Code. The Expert Advisor is compiled, and the resulting .ex4 (or .ex5) file is provided to the client. The client is instructed to input the provided Serial Key when attaching the Expert Advisor to a chart. The Expert Advisor internally validates the license by comparing the Product Code and Serial Key using the MetaTraderValidation library. If validation is successful, the Expert Advisor functions normally; otherwise, it takes appropriate action based on the implementation. This process helps protect the Expert Advisor and ensures that only authorized clients can use it.
 
 ## Table of Content
-* For MetaTrader 4 (MT4) Expert Advisor
-* For MetaTrader 4 (MT4) Indicator
-* For MetaTrader 5 (MT4) Expert Advisor
-* For MetaTrader 5 (MT4) Indicator
-* Special Instruction For MAC and Metatrader's VPS
+* [For MetaTrader 4 (MT4) Expert Advisor](#For MetaTrader 4 (MT4) Expert Advisor:)
+* [For MetaTrader 4 (MT4) Indicator](#For MetaTrader 4 (MT4) Indicator:)
+* [For MetaTrader 5 (MT4) Expert Advisor](#For MetaTrader 5 (MT4) Expert Advisor:)
+* [For MetaTrader 5 (MT4) Indicator](#For MetaTrader 5 (MT4) Indicator:)
+* [Special Instruction For MAC and Metatrader's VPS](#Special Instruction For MAC and Metatrader's VPS:)
 
 
 # For MetaTrader 4 (MT4) Expert Advisor:
@@ -71,6 +71,8 @@ Locate and open the Expert Advisor (EA) you want to license using the MetaEditor
 Place the following code above the OnInit() function of your Expert Advisor:
 
 ```echo
+//-------------------License Code Start----------------------//
+
 #import "MetatraderValidation.ex4"
 bool Validate(string Serialkey,string productCode);
 void updateConnectionStatus(string);
@@ -85,6 +87,9 @@ input string strMA1="---------------------------------------- License Input ----
 
 input string serialkey = ""; //Serial Keys
 string ProductCode="MACD Demo EA";//Product Code
+//----------------License Code End--------------------------//
+
+
 ```
 
 ![Alt Text](Images/Screenshot(7).png)
@@ -94,10 +99,11 @@ string ProductCode="MACD Demo EA";//Product Code
 Place the following code inside the OnInit() function of your Expert Advisor:
 
 ```echo
+//-------------------License Code Start----------------------//
+
 if(IsDllsAllowed()==false) 
     { 
      Alert("DLL call is not allowed. Experts cannot run.");
-     //ExpertRemove();
     } 
    if(MQLInfoInteger(MQL_OPTIMIZATION) == 0)
      {
@@ -107,9 +113,6 @@ if(IsDllsAllowed()==false)
         {
          Comment("Active");
          updateConnectionStatusConnected(serialkey);
-
-         // last_check_expiry = iTime(Symbol(),check_expiry_timeframe,0);
-         // EventSetTimer(60);
         }
       if(auth == false)
         {
@@ -117,6 +120,8 @@ if(IsDllsAllowed()==false)
          ExpertRemove();
         }
      }
+
+//----------------License Code End--------------------------//
 ```
 ![Alt Text](Images/Screenshot(8).png)
 
@@ -126,10 +131,14 @@ if(IsDllsAllowed()==false)
 Place the following code inside the OnDeinit() function of your Expert Advisor:
 
 ```echo
+//-------------------License Code Start----------------------//
+
  if(MQLInfoInteger(MQL_OPTIMIZATION) == 0)
      {
       updateConnectionStatusDisconnected(serialkey);
      }
+
+//----------------License Code End--------------------------//
 ```
 
 ![Alt Text](Images/Screenshot(9).png)
@@ -139,22 +148,22 @@ Place the following code inside the OnDeinit() function of your Expert Advisor:
 Place the following code inside the OnTick() function of your Expert Advisor:
 
 ```echo
+//-------------------License Code Start----------------------//
+
  if(MQLInfoInteger(MQL_OPTIMIZATION) == 0 && MQLInfoInteger(MQL_TESTER) == 0)
      {
       auth = Validate(serialkey,ProductCode);
       if(auth == true)
         {
          Comment("Active");
-         // last_check_expiry = iTime(Symbol(),check_expiry_timeframe,0);
-         // EventSetTimer(60);
         }
       if(auth == false)
         {
          Comment("Inactive. Contact Provider to Activate");
-         //ExpertRemove();
          return ;
         }
      }
+//----------------License Code End--------------------------//
 ```
 
 ![Alt Text](Images/Screenshot(23).png)
@@ -162,7 +171,7 @@ Place the following code inside the OnTick() function of your Expert Advisor:
 
 ## Step 13: Replace the Product Code
 
-Replace the string "MACD Demo EA" with the your generated Product Code, the Expert Advisor will use this Product Code to validate the license key provided by the client using the MetaTraderValidation library.
+Replace the string "MACD Demo EA" with your generated Product Code, the Expert Advisor will use this Product Code to validate the license key provided by the client using the MetaTraderValidation library.
 
 ![Alt Text](Images/Screenshot(12).png)
 
@@ -172,11 +181,11 @@ Replace the string "MACD Demo EA" with the your generated Product Code, the Expe
 
 ## Step 14: Compile and Provide to Client
 
-Compile the Expert Advisor and provide the resulting .ex4 file to your client.
+Compile the Expert Advisor and provide your client the resulting .ex4 files (yourExpert.ex4 and MetatraderValidation.ex4).
 
 ## Step 15: Instruct the Client
 
-Instruct your client to enter the Serial Key in the "serialkey" input field of the Expert Advisor when place the Expert Advisor on the chart.
+Instruct your client to enter the Serial Key in the "serial key" input field of the Expert Advisor when placing the Expert Advisor on the chart.
 
 ![Alt Text](Images/Screenshot(10).png)
 
@@ -226,7 +235,7 @@ Paste the MetatraderValidation.ex4 file you copied earlier into the "Libraries" 
 
 ![Alt Text](Images/Screenshot(5).png)
 
-## Step 7: Navigate to Experts Folder
+## Step 7: Navigate to Indicators Folder
 
 Go back to the "MQL4" folder and click on the "Indicators" folder.
 
@@ -245,6 +254,8 @@ Locate and open the Indicator you want to license using the MetaEditor.
 Place the following code above the OnInit() function of your Indicator:
 
 ```echo
+//-------------------License Code Start----------------------//
+
 #import "MetatraderValidation.ex4"
 bool Validate(string Serialkey,string productCode);
 void updateConnectionStatus(string);
@@ -259,6 +270,9 @@ input string strMA1="---------------------------------------- License Input ----
 
 input string serialkey = ""; //Serial Keys
 string ProductCode="MACD Demo EA";//Product Code
+string shortname;
+
+//----------------License Code End--------------------------//
 ```
 
 ![Alt Text](Images/Screenshot(27).png)
@@ -268,10 +282,11 @@ string ProductCode="MACD Demo EA";//Product Code
 Place the following code inside the OnInit() function of your Indicator:
 
 ```echo
+//-------------------License Code Start----------------------//
+
 if(IsDllsAllowed()==false) 
     { 
-     Alert("DLL call is not allowed. Experts cannot run.");
-     //ExpertRemove();
+     Alert("DLL call is not allowed. Indicator cannot run.");
     } 
    if(MQLInfoInteger(MQL_OPTIMIZATION) == 0)
      {
@@ -281,16 +296,19 @@ if(IsDllsAllowed()==false)
         {
          Comment("Active");
          updateConnectionStatusConnected(serialkey);
-
-         // last_check_expiry = iTime(Symbol(),check_expiry_timeframe,0);
-         // EventSetTimer(60);
         }
       if(auth == false)
         {
          Comment("Inactive. Contact Provider to Activate");
-         ExpertRemove();
+         shortname=ProductCode;
+         IndicatorSetString(INDICATOR_SHORTNAME,shortname);
+         int window=ChartWindowFind();
+         bool res=ChartIndicatorDelete(0,window,shortname);
+         return(INIT_FAILED);
         }
      }
+
+//----------------License Code End--------------------------//
 ```
 ![Alt Text](Images/Screenshot(28).png)
 
@@ -300,6 +318,8 @@ if(IsDllsAllowed()==false)
 Add the following code at the end  of your Indicator:
 
 ```echo
+//-------------------License Code Start----------------------//
+
 void OnDeinit(const int reason)
   {
 if(MQLInfoInteger(MQL_OPTIMIZATION) == 0)
@@ -307,6 +327,8 @@ if(MQLInfoInteger(MQL_OPTIMIZATION) == 0)
       updateConnectionStatusDisconnected(serialkey);
      }
   }
+
+//----------------License Code End--------------------------//
 ```
 
 ![Alt Text](Images/Screenshot(30).png)
@@ -316,22 +338,23 @@ if(MQLInfoInteger(MQL_OPTIMIZATION) == 0)
 Place the following code inside the OnCalculate() function of your Indicator:
 
 ```echo
+//-------------------License Code Start----------------------//
+
   if(MQLInfoInteger(MQL_OPTIMIZATION) == 0 && MQLInfoInteger(MQL_TESTER) == 0)
      {
       auth = Validate(serialkey,ProductCode);
       if(auth == true)
         {
          Comment("Active");
-         // last_check_expiry = iTime(Symbol(),check_expiry_timeframe,0);
-         // EventSetTimer(60);
         }
       if(auth == false)
         {
          Comment("Inactive. Contact Provider to Activate");
-        // ExpertRemove();
          return(rates_total);
         }
      }
+//----------------License Code End--------------------------//
+
 ```
 
 ![Alt Text](Images/Screenshot(60).png)
@@ -339,7 +362,7 @@ Place the following code inside the OnCalculate() function of your Indicator:
 
 ## Step 13: Replace the Product Code
 
-Replace the string "MACD Demo EA" with the your generated Product Code, the Indicator will use this Product Code to validate the license key provided by the client using the MetaTraderValidation library.
+Replace the string "MACD Demo EA" with your generated Product Code, the Indicator will use this Product Code to validate the license key provided by the client using the MetaTraderValidation library.
 
 ![Alt Text](Images/Screenshot(12).png)
 
@@ -349,11 +372,11 @@ Replace the string "MACD Demo EA" with the your generated Product Code, the Indi
 
 ## Step 14: Compile and Provide to Client
 
-Compile the Indicator and provide the resulting .ex4 file to your client.
+Compile the Indicator and provide your client the resulting .ex4 files (yourIndicator.ex4 and MetatraderValidation.ex4).
 
 ## Step 15: Instruct the Client
 
-Instruct your client to enter the Serial Key in the "serialkey" input field of the Indicator when place the Indicator on the chart.
+Instruct your client to enter the Serial Key in the "serial key" input field of the Indicator when placing the Indicator on the chart.
 
 ![Alt Text](Images/Screenshot(31).png)
 
@@ -423,6 +446,8 @@ Locate and open the Expert Advisor (EA) you want to license using the MetaEditor
 Place the following code above the OnInit() function of your Expert Advisor:
 
 ```echo
+//-------------------License Code Start----------------------//
+
 #import "MetatraderValidation.ex5"
 bool Validate(string,string);
 void updateConnectionStatus(string);
@@ -436,6 +461,9 @@ input string strMA1="---------------------------------------- License Input ----
 
 input string serialkey = ""; //Serial Keys
 string ProductCode = "";//Product Code
+
+//----------------License Code End--------------------------//
+
 ```
 
 ![Alt Text](Images/Screenshot(42).png)
@@ -445,10 +473,11 @@ string ProductCode = "";//Product Code
 Place the following code inside the OnInit() function of your Expert Advisor:
 
 ```echo
+//-------------------License Code Start----------------------//
+
 if(!TERMINAL_DLLS_ALLOWED)
      {
       Alert("Please Allow DLL Imports!");
-      //ExpertRemove();
      }
    if(MQLInfoInteger(MQL_OPTIMIZATION) == 0)
      {
@@ -458,9 +487,6 @@ if(!TERMINAL_DLLS_ALLOWED)
         {
          Comment("Active");
          updateConnectionStatusConnected(serialkey);
-
-         // last_check_expiry = iTime(Symbol(),check_expiry_timeframe,0);
-         // EventSetTimer(60);
         }
       if(auth == false)
         {
@@ -468,6 +494,8 @@ if(!TERMINAL_DLLS_ALLOWED)
          ExpertRemove();
         }
      }
+
+//----------------License Code End--------------------------//
 ```
 ![Alt Text](Images/Screenshot(43).png)
 
@@ -477,10 +505,15 @@ if(!TERMINAL_DLLS_ALLOWED)
 Place the following code inside the OnDeinit() function of your Expert Advisor:
 
 ```echo
+//-------------------License Code Start----------------------//
+
   if(MQLInfoInteger(MQL_OPTIMIZATION) == 0)
      {
       updateConnectionStatusDisconnected(serialkey);
      }
+
+//----------------License Code End--------------------------//
+
 ```
 
 ![Alt Text](Images/Screenshot(44).png)
@@ -490,22 +523,24 @@ Place the following code inside the OnDeinit() function of your Expert Advisor:
 Place the following code inside the OnTick() function of your Expert Advisor:
 
 ```echo
+//-------------------License Code Start----------------------//
+
  if(MQLInfoInteger(MQL_OPTIMIZATION) == 0 && MQLInfoInteger(MQL_TESTER) == 0)
      {
       auth = Validate(serialkey,ProductCode);
       if(auth == true)
         {
          Comment("Active");
-         // last_check_expiry = iTime(Symbol(),check_expiry_timeframe,0);
-         // EventSetTimer(60);
         }
       if(auth == false)
         {
          Comment("Inactive. Contact Provider to Activate");
-         //ExpertRemove();
          return ;
         }
      }
+
+//----------------License Code End--------------------------//
+
 ```
 
 ![Alt Text](Images/Screenshot(45).png)
@@ -523,11 +558,11 @@ Replace the string "" with the your generated Product Code, the Expert Advisor w
 
 ## Step 14: Compile and Provide to Client
 
-Compile the Expert Advisor and provide the resulting .ex5 file to your client.
+Compile the Expert Advisor and provide your client the resulting .ex5 files (yourExpert.ex5 and MetatraderValidation.ex5).
 
 ## Step 15: Instruct the Client
 
-Instruct your client to enter the Serial Key in the "serialkey" input field of the Expert Advisor when place the Expert Advisor on the chart.
+Instruct your client to enter the Serial Key in the "serial key" input field of the Expert Advisor when placing the Expert Advisor on the chart.
 
 ![Alt Text](Images/Screenshot(46).png)
 
@@ -577,7 +612,7 @@ Paste the MetatraderValidation.ex5 file you copied earlier into the "Libraries" 
 
 ![Alt Text](Images/Screenshot(38).png)
 
-## Step 7: Navigate to Experts Folder
+## Step 7: Navigate to Indicators Folder
 
 Go back to the "MQL5" folder and click on the "Indicators" folder.
 
@@ -596,6 +631,8 @@ Locate and open the Indicator you want to license using the MetaEditor.
 Place the following code above the OnInit() function of your Indicator:
 
 ```echo
+//-------------------License Code Start----------------------//
+
 #import "MetatraderValidation.ex5"
 bool Validate(string,string);
 void updateConnectionStatus(string);
@@ -609,6 +646,10 @@ input string strMA1="---------------------------------------- License Input ----
 
 input string serialkey = ""; //Serial Keys
 string ProductCode = "";//Product Code
+string shortname;
+
+//----------------License Code End--------------------------//
+
 ```
 
 ![Alt Text](Images/Screenshot(52).png)
@@ -618,10 +659,11 @@ string ProductCode = "";//Product Code
 Place the following code inside the OnInit() function of your Indicator:
 
 ```echo
+//-------------------License Code Start----------------------//
+
 if(!TERMINAL_DLLS_ALLOWED)
      {
       Alert("Please Allow DLL Imports!");
-      //ExpertRemove();
      }
    if(MQLInfoInteger(MQL_OPTIMIZATION) == 0)
      {
@@ -631,16 +673,20 @@ if(!TERMINAL_DLLS_ALLOWED)
         {
          Comment("Active");
          updateConnectionStatusConnected(serialkey);
-
-         // last_check_expiry = iTime(Symbol(),check_expiry_timeframe,0);
-         // EventSetTimer(60);
         }
       if(auth == false)
         {
+         shortname=ProductCode;
+         IndicatorSetString(INDICATOR_SHORTNAME,shortname);
          Comment("Inactive. Contact Provider to Activate");
-         ExpertRemove();
+         int window=ChartWindowFind();
+         bool res=ChartIndicatorDelete(0,window,shortname);
+         return(INIT_FAILED);
         }
      }
+
+//----------------License Code End--------------------------//
+
 ```
 ![Alt Text](Images/Screenshot(53).png)
 
@@ -650,6 +696,8 @@ if(!TERMINAL_DLLS_ALLOWED)
 Add the following code at the end  of your Indicator:
 
 ```echo
+//-------------------License Code Start----------------------//
+
 void OnDeinit(const int reason)
   {
    if(MQLInfoInteger(MQL_OPTIMIZATION) == 0)
@@ -658,6 +706,9 @@ void OnDeinit(const int reason)
      }
 
   }
+
+//----------------License Code End--------------------------//
+
 ```
 
 ![Alt Text](Images/Screenshot(54).png)
@@ -667,22 +718,23 @@ void OnDeinit(const int reason)
 Place the following code inside the OnCalculate() function of your Indicator:
 
 ```echo
+//-------------------License Code Start----------------------//
+
   if(MQLInfoInteger(MQL_OPTIMIZATION) == 0 && MQLInfoInteger(MQL_TESTER) == 0)
      {
       auth = Validate(serialkey,ProductCode);
       if(auth == true)
         {
          Comment("Active");
-         // last_check_expiry = iTime(Symbol(),check_expiry_timeframe,0);
-         // EventSetTimer(60);
         }
       if(auth == false)
         {
          Comment("Inactive. Contact Provider to Activate");
-         //ExpertRemove();
          return rates_total;
         }
      }
+
+//----------------License Code End--------------------------//
 ```
 
 ![Alt Text](Images/Screenshot(55).png)
@@ -690,7 +742,7 @@ Place the following code inside the OnCalculate() function of your Indicator:
 
 ## Step 13: Replace the Product Code
 
-Replace the string "" with the your generated Product Code, the Indicator will use this Product Code to validate the license key provided by the client using the MetaTraderValidation library.
+Replace the string "" with your generated Product Code, the Indicator will use this Product Code to validate the license key provided by the client using the MetaTraderValidation library.
 
 ![Alt Text](Images/Screenshot(56).png)
 
@@ -700,11 +752,11 @@ Replace the string "" with the your generated Product Code, the Indicator will u
 
 ## Step 14: Compile and Provide to Client
 
-Compile the Indicator and provide the resulting .ex5 file to your client.
+Compile the Expert Advisor and provide your client the resulting .ex5 files (yourIndicator.ex5 and MetatraderValidation.ex5).
 
 ## Step 15: Instruct the Client
 
-Instruct your client to enter the Serial Key in the "serialkey" input field of the Indicator when place the Indicator on the chart.
+Instruct your client to enter the Serial Key in the "serial key" input field of the Indicator when placing the Indicator on the chart.
 
 ![Alt Text](Images/Screenshot(57).png)
 
@@ -716,13 +768,13 @@ The Indicator will validate the Serial Key with the MetaTraderValidation library
 
 # Special Instruction for MAC and Metatrader's VPS:
 
-## Step 1: Open experts options.
+## Step 1: Open Experts options.
 
 Go to tools and click for options.
 
 ![Alt Text](Images/Screenshot(61).png)
 
-## Step 2: Add link in to the allowed list.
+## Step 2: Add a link to the allowed list.
 
 Add this link and also allow the web request. https://api.licensemybot.com/.
 
